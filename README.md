@@ -3,7 +3,7 @@ inspect.lua
 
 [![Build Status](https://travis-ci.org/kikito/inspect.lua.png?branch=master)](https://travis-ci.org/kikito/inspect.lua)
 
-This function transform any Lua table into a human-readable representation of that table.
+This library transforms any Lua value into a human-readable representation. It is especially useful for debugging errors in tables.
 
 The objective here is human understanding (i.e. for debugging), not serialization or compactness.
 
@@ -124,7 +124,7 @@ assert(inspect(t5, {depth = 2}) == [[{
 
 `options.depth` defaults to infinite (`math.huge`).
 
-### options.newline & options.indent
+#### options.newline & options.indent
 
 These are the strings used by `inspect` to respectively add a newline and indent each level of a table.
 
@@ -142,7 +142,7 @@ assert(inspect(t) == [[{
 assert(inspect(t, {newline='@', indent="++"}), "{@++a = {@++++b = 1@++}@}"
 ```
 
-### options.process
+#### options.process
 
 `options.process` is a function which allow altering the passed object before transforming it into a string.
 A typical way to use it would be to remove certain values so that they don't appear at all.
@@ -219,16 +219,19 @@ This method is *not* appropriate for saving/restoring tables. It is meant to be 
 Installation
 ============
 
-Just copy the inspect.lua file somewhere in your projects (maybe inside a /lib/ folder) and require it accordingly.
+If you are using luarocks, just run
+
+    luarocks install inspect
+
+Otherwise, you can just copy the inspect.lua file somewhere in your projects (maybe inside a /lib/ folder) and require it accordingly.
 
 Remember to store the value returned by require somewhere! (I suggest a local variable named inspect, although others might like table.inspect)
 
     local inspect = require 'inspect'
           -- or --
-    table.inspect = require 'inspect'
+    local inspect = require 'lib.inspect'
 
-Also, make sure to read the license; the text of that license file must appear somewhere in your projects' files. For your convenience, it's
-included at the begining of inspect.lua.
+Also, make sure to read the license; the text of that license file must appear somewhere in your projects' files. For your convenience, it's included at the begining of inspect.lua.
 
 Specs
 =====
@@ -240,14 +243,9 @@ This project uses [busted](http://olivinelabs.com/busted/) for its specs. If you
 Change log
 ==========
 
-## v3.0
+Read it on the CHANGELOG.md file
 
-The basic functionality remains as before, but there's one backwards-incompatible change if you used `options.filter`.
 
-* **Removed** `options.filter`
-* **Added** `options.process`, which can be used to do the same as `options.filter`, and more.
-* **Added** two new constants, `inspect.METATABLE` and `inspect.KEY`
-* **Added** `options.indent` & `options.newline`.
 
 
 
