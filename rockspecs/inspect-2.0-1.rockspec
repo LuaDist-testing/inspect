@@ -1,17 +1,9 @@
--- This file was automatically generated for the LuaDist project.
-
 package = "inspect"
-version = "1.2-2"
--- LuaDist source
+version = "2.0-1"
 source = {
-  tag = "1.2-2",
-  url = "git://github.com/LuaDist-testing/inspect.git"
+  url = "https://github.com/kikito/inspect.lua/archive/v2.0.0.tar.gz",
+  dir = "inspect.lua-2.0.0"
 }
--- Original source
--- source = {
---   url = "https://github.com/kikito/inspect.lua/archive/v1.2.0.tar.gz",
---   dir = "inspect.lua-1.2.0"
--- }
 description = {
   summary = "Lua table visualizer, ideal for debugging",
   detailed = [[
