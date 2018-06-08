@@ -1,5 +1,5 @@
 local inspect ={
-  _VERSION = 'inspect.lua 3.0.1',
+  _VERSION = 'inspect.lua 3.0.2',
   _URL     = 'http://github.com/kikito/inspect.lua',
   _DESCRIPTION = 'human-readable representations of tables',
   _LICENSE = [[
@@ -114,14 +114,14 @@ local maxIdsMetaTable = {
 
 local idsMetaTable = {
   __index = function (self, typeName)
-    local col = setmetatable({}, {__mode = "kv"})
+    local col = {}
     rawset(self, typeName, col)
     return col
   end
 }
 
 local function countTableAppearances(t, tableAppearances)
-  tableAppearances = tableAppearances or setmetatable({}, {__mode = "k"})
+  tableAppearances = tableAppearances or {}
 
   if type(t) == 'table' then
     if not tableAppearances[t] then
