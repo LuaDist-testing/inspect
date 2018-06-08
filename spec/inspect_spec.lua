@@ -51,7 +51,8 @@ describe( 'inspect', function()
     it('backslashes its backslashes', function()
       assert.equals('"I have \\\\ a backslash"', inspect('I have \\ a backslash'))
       assert.equals('"I have \\\\\\\\ two backslashes"', inspect('I have \\\\ two backslashes'))
-      assert.equals('"I have \\\\\\n a backslash followed by a newline"', inspect('I have \\\n a backslash followed by a newline'))
+      assert.equals('"I have \\\\\\n a backslash followed by a newline"',
+                    inspect('I have \\\n a backslash followed by a newline'))
     end)
 
   end)
@@ -71,7 +72,8 @@ describe( 'inspect', function()
 
   if is_luajit then
     it('works with luajit cdata', function()
-      assert.equals('{ <cdata 1>, <cdata 2>, <cdata 3> }', inspect({ ffi.new("int", 1), ffi.typeof("int"), ffi.typeof("int")(1) }))
+      assert.equals('{ cdata<int>: PTR, ctype<int>, cdata<int>: PTR }',
+                    inspect({ ffi.new("int", 1), ffi.typeof("int"), ffi.typeof("int")(1) }):gsub('(0x%x+)','PTR'))
     end)
   end
 
